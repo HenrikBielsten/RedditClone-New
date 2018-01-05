@@ -12,23 +12,23 @@ require __DIR__.'../../views/header.php';
     <form action="../app/auth/create.php" method="post">
         <div class="form-group">
             <label for="name">Name</label>
-            <input class="form-control" type="text" name="name" placeholder="Kurt Wallander" required>
+            <input class="form-control" type="text" name="name" placeholder="Firstname af Lastname" required>
         </div><!-- /form-group -->
 
         <div class="form-group">
             <label for="username">Username</label> <label class="alreadyExists text-danger small"></label>
-            <input class="form-control usernameField" type="text" name="username" placeholder="Coolkid92" required>
+            <input class="form-control usernameField" type="text" name="username" placeholder="Awesome_Username90" required>
 
         </div><!-- /form-group -->
 
         <div class="form-group">
           <label for="biography">Biography</label>
-          <textarea class="form-control" type="text" maxlength="200" name="biography" placeholder="I'm a graphic designer that loves to..." required></textarea>
+          <textarea class="form-control" type="text" maxlength="200" name="biography" placeholder="My biography" required></textarea>
         </div><!-- /form-group -->
 
         <div class="form-group">
             <label for="email">Email</label>
-            <input class="form-control" type="email" name="email" placeholder="kurt@wallander.com" required>
+            <input class="form-control" type="email" name="email" placeholder="my.email@emai.com" required>
         </div><!-- /form-group -->
 
         <div class="form-group">

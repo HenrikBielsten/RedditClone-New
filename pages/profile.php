@@ -28,6 +28,8 @@ require __DIR__.'../../views/header.php';
         <?php endforeach; ?>
 
       </article>
+
+      <a href="editProfileForm.php">Edit Profile</a>
     </div>
 
   </div>
