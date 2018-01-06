@@ -20,10 +20,9 @@ if (isset($_POST['name'])) {
 
   $statement->execute();
 
-
   redirect('../../pages/profile.php');
 
 } else {
-  redirect('../../pages/about.php');
 
+  redirect('../../pages/about.php');
 }
