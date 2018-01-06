@@ -25,19 +25,19 @@ require __DIR__.'../../views/header.php';
 
 
         <div class="form-group">
-          <input class="form-control" type="text" name="name" value="<?= $info['name']; ?>">
+          <input class="form-control" type="text" name="name" value="<?= $info['name']; ?>" required>
           <small class="form-text text-muted">Enter your new name</small>
         </div><!-- /form-group -->
 
 
         <div class="form-group">
-          <input class="form-control" type="text" name="username" value="<?= $info['username']; ?>">
+          <input class="form-control" type="text" name="username" value="<?= $info['username']; ?>" required>
           <small class="form-text text-muted">Enter your new username</small>
         </div><!-- /form-group -->
 
 
           <div class="form-group">
-            <input class="form-control" type="text" name="email" value="<?= $info['email']; ?>">
+            <input class="form-control" type="text" name="email" value="<?= $info['email']; ?>" required>
             <small class="form-text text-muted">Enter your new email</small>
           </div><!-- /form-group -->
 
