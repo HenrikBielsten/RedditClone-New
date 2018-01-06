@@ -34,7 +34,6 @@ require __DIR__.'../../views/header.php';
         <div class="form-group">
             <label for="password">Password</label>
             <input class="form-control password" type="password" name="password" placeholder="**********" required>
-            <input class="togglePassword" type="checkbox"> Show Password
         </div><!-- /form-group -->
 
 
