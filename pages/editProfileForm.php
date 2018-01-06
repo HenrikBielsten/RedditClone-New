@@ -17,47 +17,45 @@ require __DIR__.'../../views/header.php';
       <?php else: echo "../images/noimage.png";?>
       <?php endif; ?>" alt="">
 
-      <form action="profile.php" method="post">
+      <form action="/../app/auth/editProfile.php" method="post">
         <div class="form-group">
-          <input class="form-control" type="text" name="editImage" value="Image URL">
+          <input class="form-control" type="text" name="editImage" placeholder="Image URL">
           <small class="form-text text-muted">Choose your new profile picture and copy/paste the image URL here</small>
         </div><!-- /form-group -->
 
-      <form action="profile.php" method="post">
+
         <div class="form-group">
-          <input class="form-control" type="text" name="editName" value="<?= $info['name']; ?>">
+          <input class="form-control" type="text" name="name" value="<?= $info['name']; ?>">
           <small class="form-text text-muted">Enter your new name</small>
         </div><!-- /form-group -->
 
-      </form>
 
-      <form action="profile.php" method="post">
         <div class="form-group">
-          <input class="form-control" type="text" name="editUsername" value="<?= $info['username']; ?>">
+          <input class="form-control" type="text" name="username" value="<?= $info['username']; ?>">
           <small class="form-text text-muted">Enter your new username</small>
         </div><!-- /form-group -->
 
-        <form action="profile.php" method="post">
+
           <div class="form-group">
-            <input class="form-control" type="text" name="editEmail" value="<?= $info['email']; ?>">
+            <input class="form-control" type="text" name="email" value="<?= $info['email']; ?>">
             <small class="form-text text-muted">Enter your new email</small>
           </div><!-- /form-group -->
 
-          <form action="profile.php" method="post">
+
             <div class="form-group">
-              <textarea class="form-control" name="editBio" rows="5" cols="80"><?= $info['biography']; ?></textarea>
+              <textarea class="form-control" name="biography" rows="5" cols="80"><?= $info['biography']; ?></textarea>
               <small class="form-text text-muted">Edit your biography</small>
             </div><!-- /form-group -->
 
           <h4>Change Password</h4>
 
-          <form action="profile.php" method="post">
+
             <div class="form-group">
-              <input class="form-control" type="password" name="editPassword" placeholder="Current password">
+              <input class="form-control" type="password" name="password" placeholder="Current password">
               <small class="form-text text-muted">Enter your current password</small>
             </div><!-- /form-group -->
 
-            <form action="profile.php" method="post">
+
               <div class="form-group">
                 <input class="form-control" type="password" name="editPassword" placeholder="New password">
                 <small class="form-text text-muted">Choose a new password</small>
