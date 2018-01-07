@@ -4,28 +4,25 @@ require __DIR__.'/../autoload.php';
 
 $id = (int)$_SESSION['user']['id'];
 
-
-
-
 // CHANE PROFILE PICTURE
 if (isset( $_FILES["img"]) && !empty($_FILES["img"]["name"])) {
-    if (is_uploaded_file( $_FILES["img"]["tmp_name"] ) && $_FILES["img"]["error"] === 0) {
-  $path = pathinfo($_FILES['img']['name']);
-  $extension = $path['extension'];
-  $fileName = $_SESSION['user']['username'].'.'.$extension;
+  if (is_uploaded_file( $_FILES["img"]["tmp_name"] ) && $_FILES["img"]["error"] === 0) {
+    $path = pathinfo($_FILES['img']['name']);
+    $extension = $path['extension'];
+    $fileName = $_SESSION['user']['username'].'.'.$extension;
 
-  $img = filter_var($fileName, FILTER_SANITIZE_STRING);
+    $img = filter_var($fileName, FILTER_SANITIZE_STRING);
 
-  $imgQuery = 'UPDATE users SET img = :img WHERE id = :id';
+    $imgQuery = 'UPDATE users SET img = :img WHERE id = :id';
 
-  $imgStatement = $pdo->prepare($imgQuery);
+    $imgStatement = $pdo->prepare($imgQuery);
 
-  $imgStatement->bindParam(':img', $img, PDO::PARAM_STR);
-  $imgStatement->bindParam(':id', $id, PDO::PARAM_INT);
-  $imgStatement->execute();
+    $imgStatement->bindParam(':img', $img, PDO::PARAM_STR);
+    $imgStatement->bindParam(':id', $id, PDO::PARAM_INT);
+    $imgStatement->execute();
 
-  move_uploaded_file($_FILES['img']['tmp_name'], __DIR__.'/../../images/'.$fileName);
-}
+    move_uploaded_file($_FILES['img']['tmp_name'], __DIR__.'/../../images/'.$fileName);
+  }
 }
 
 // CHANGES THE NAME, USERNAME, EMAIL AND BIOGRAPHY
