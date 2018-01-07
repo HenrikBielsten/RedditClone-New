@@ -17,6 +17,7 @@ if (!function_exists('redirect')) {
     }
 }
 
+// Function to fetch info about the currently logged in user
 function userInfo($pdo) {
   $id = (int)$_SESSION['user']['id'];
   $query = "SELECT * FROM users WHERE id = :id";
@@ -25,12 +26,7 @@ function userInfo($pdo) {
   $statement->bindParam(':id', $id, PDO::PARAM_INT);
   $statement->execute();
 
-
   $resultQuery = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-  if (!$statement) {
-    die(var_dump($pdo->errorInfo()));
-  }
 
   return $resultQuery;
 }

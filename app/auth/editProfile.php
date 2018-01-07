@@ -25,7 +25,7 @@ if (isset( $_FILES["img"]) && !empty($_FILES["img"]["name"])) {
   }
 }
 
-// CHANGES THE NAME, USERNAME, EMAIL AND BIOGRAPHY
+// CHANGES NAME, USERNAME, EMAIL AND BIOGRAPHY
 if (isset($_POST['name'], $_POST['username'], $_POST['email'], $_POST['biography'])) {
   $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
   $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);

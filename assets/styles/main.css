@@ -1,42 +1,15 @@
 /* In this file you can add your custom styles. */
 .profilePic {
-  border: 5px outset lightgrey;
+  box-shadow: 3px 3px 10px black;
   height: 200px;
   width: 200px;
   margin-bottom: 15px;
 }
 
-.profilePicPosts {
-  border-radius: 50%;
-  height: 50px;
-  width: 50px;
-}
-
-.profilePicPostsComment {
-  border-radius: 50%;
-  height: 35px;
-  width: 35px;
-}
-
-.noresize {
-  resize: none;
-}
-
-.voteScore {
-  display: flex;
-  flex-flow: row;
-}
-
-.topRated {
-  display: none;
-}
-
-.hide {
-  display: none;
-}
-
-.show {
-  display: block;
+.bio {
+  height: 20vh;
+  overflow: scroll;
+  padding: 6px;
 }
 
 .p-cursive {

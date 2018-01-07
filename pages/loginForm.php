@@ -12,23 +12,25 @@ require __DIR__.'../../views/header.php';
     <form action="../app/auth/login.php" method="post">
         <div class="form-group">
             <label for="email">Username</label>
-            <input class="form-control" type="text" name="username" placeholder="Coolkid92" required>
-            <small class="form-text text-muted">Enter your email address</small>
+            <input class="form-control" type="text" name="username" placeholder="Awesome_Username88" required>
+            <small class="form-text text-muted">What's your username?</small>
         </div><!-- /form-group -->
 
         <div class="form-group">
             <label for="password">Password</label>
-            <input class="form-control" type="password" name="password" required>
-            <small class="form-text text-muted">Very secret, uncrackable password goes here</small>
+            <input class="form-control" type="password" name="password" placeholder="********" required>
+            <small class="form-text text-muted">Please provide your password</small>
         </div><!-- /form-group -->
 
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-sm btn-outline-primary">Login</button>
 
 
 
     </form>
 
-      <small class="form-text text-muted">Not a user yet? <a href="createForm.php">Create Account</a></small>
+    <br>
+
+      <a href="createForm.php"><button type="button" class="btn btn-sm btn-outline-success">Create New Account</button></a>
 </article>
 
 <?php require __DIR__.'../../views/footer.php'; ?>

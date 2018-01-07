@@ -24,6 +24,10 @@
           <a class="nav-link" href="/../app/auth/logout.php">Logout</a>
       </li><!-- /nav-item -->
 
+      <li class="nav-item">
+          <a class="nav-link" href="/../pages/profile.php">Profile</a>
+      </li><!-- /nav-item -->
+
       <?php endif; ?>
 
   </ul><!-- /navbar-nav -->
