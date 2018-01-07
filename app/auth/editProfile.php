@@ -23,7 +23,6 @@ if (isset($_POST['name'], $_POST['username'], $_POST['email'], $_POST['biography
 
   $statement->execute();
 
-  redirect('../../pages/profile.php');
 
 }
 
@@ -56,8 +55,8 @@ if (isset($_POST['newPassword'])) {
 
     $updateStatement->execute();
 
-    redirect('../../pages/profile.php');
 
   }
 
 }
+redirect('../../pages/profile.php');
