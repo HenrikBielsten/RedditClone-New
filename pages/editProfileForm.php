@@ -17,9 +17,9 @@ require __DIR__.'../../views/header.php';
       <?php else: echo "../images/noimage.png";?>
       <?php endif; ?>" alt="">
 
-      <form action="/../app/auth/editProfile.php" method="post">
+      <form action="/../app/auth/editProfile.php" method="post" enctype="multipart/form-data">
         <div class="form-group">
-          <input class="form-control" type="text" name="editImage" placeholder="Image URL">
+          <input class="form-control" type="file" accept=".png, .jpg, .jpeg" name="img">
           <small class="form-text text-muted">Choose your new profile picture and copy/paste the image URL here</small>
         </div><!-- /form-group -->
 
