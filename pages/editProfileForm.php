@@ -51,13 +51,13 @@ require __DIR__.'../../views/header.php';
 
 
             <div class="form-group">
-              <input class="form-control" type="password" name="password" placeholder="Current password">
+              <input class="form-control" type="password" name="currentPassword" placeholder="Current password">
               <small class="form-text text-muted">Enter your current password</small>
             </div><!-- /form-group -->
 
 
               <div class="form-group">
-                <input class="form-control" type="password" name="editPassword" placeholder="New password">
+                <input class="form-control" type="password" name="newPassword" placeholder="New password">
                 <small class="form-text text-muted">Choose a new password</small>
               </div><!-- /form-group -->
 
