@@ -20,7 +20,7 @@ require __DIR__.'../../views/header.php';
             <h5 class="card-subtitle"><?php echo $info['username'];?></h5>
             <br>
               <p class="card-text text-left card bio"><?php echo $info['biography'];?></p>
-              <p class="card-text text-left p-cursive">Email: <?php echo $info['email'];?></p>
+              <i class="card-text text-left">Email: <?php echo $info['email'];?></i>
           </div>
 
         <?php endforeach; ?>

@@ -33,7 +33,10 @@ function userInfo($pdo) {
 
 // Fetches database info for the posts
 function postInfo($pdo) {
-  $postQuery = 'SELECT * FROM posts AND SELECT * FROM users ORDER BY post_id DESC';
+  $postQuery = 'SELECT posts.*, users.* FROM posts
+                JOIN users ON posts.user_id=users.id
+                GROUP BY posts.post_id
+                ORDER BY post_id DESC';
 
   $postStatement = $pdo->prepare($postQuery);
   $postStatement->execute();

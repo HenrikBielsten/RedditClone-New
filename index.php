@@ -16,7 +16,7 @@ require __DIR__.'/views/header.php';
 
   <h3><?php echo $post['title']; ?></h3>
   <a href="<?php echo $post['url']; ?>" target="_blank"><?php echo $post['description']; ?></a>
-  <p>Posted by: <?php echo  ?></p>
+  <p>Posted by: <?php echo $post['name']; ?></p>
 
 </article>
 
