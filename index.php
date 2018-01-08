@@ -15,9 +15,10 @@ require __DIR__.'/views/header.php';
 <?php foreach ($posts as $post): ?>
 
   <div class="row">
+
     <article class="col-md-6">
 
-      <div class="card">
+      <div class="card text-white bg-dark">
         <h3 class="card-header"><?php echo $post['title']; ?></h3>
         <div class="card-body d-flex flex-column">
           <a class="card-text" href="<?php echo $post['url']; ?>" target="_blank"><?php echo $post['description']; ?></a>
@@ -35,20 +36,19 @@ require __DIR__.'/views/header.php';
             <small class="text-muted"><?php echo $post['posttime'] ?></small>
           </div> <!-- End Author and Time -->
 
-
         </div> <!-- End card-body -->
+
         <div class="card-footer">
           <?php if (isset($_SESSION['user']) && $post['username'] === $_SESSION['user']['username']): ?>
-            <a href="/pages/editPostForm.php?id=<?php echo $post['post_id'] ?>">Edit Post</small>
+            <a href="/pages/editPostForm.php?id=<?php echo $post['post_id'] ?>">Edit Post</a>
           <?php endif; ?>
-
-        </div>
+        </div> <!-- End Footer -->
 
       </div> <!-- End card -->
 
+    </article> <!-- End article -->
 
-    </article>
-  </div>
+  </div> <!-- End Row -->
 
 <?php endforeach; ?>
 
