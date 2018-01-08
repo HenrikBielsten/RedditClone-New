@@ -46,9 +46,13 @@ require __DIR__.'/views/header.php';
       </div> <!-- End card -->
 
       <div class="d-flex flex-column justify-content-center ml-3">
-        <a href="#">Vote Up</a>
+        <?php if (isset($_SESSION['user']) && $post['username'] !== $_SESSION['user']['username']): ?>
+        <button class="btn btn-success btn-sm" type="button" name="up" value="<?php echo $post['post_id']?>">Vote Up</button>
+        <?php endif; ?>
         <p class="m-0">Votes: 188</p>
-        <a href="#">Vote Down</a>
+        <?php if (isset($_SESSION['user']) && $post['username'] !== $_SESSION['user']['username']): ?>
+        <button class="btn btn-danger btn-sm" type="button" name="down" value="<?php echo $post['post_id']?>">Vote Down</button>
+        <?php endif; ?>
       </div>
 
     </article> <!-- End article -->
