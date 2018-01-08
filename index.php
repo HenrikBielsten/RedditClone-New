@@ -10,6 +10,8 @@ require __DIR__.'/views/header.php';
 
 <?php $posts = postInfo($pdo); ?>
 
+<?php usort($posts, 'sortByDate'); ?>
+
 <?php foreach ($posts as $post): ?>
 
   <div class="row">

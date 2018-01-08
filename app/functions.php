@@ -45,3 +45,8 @@ function postInfo($pdo) {
 
   return $postReturn;
 }
+
+function sortByDate ($a, $b) {
+
+    return strtotime ($a['posttime']) < strtotime ($b ['posttime']);
+}

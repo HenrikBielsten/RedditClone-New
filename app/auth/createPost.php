@@ -10,7 +10,7 @@ if (isset($_POST['title'], $_POST['description'], $_POST['url'])) {
   $title = filter_var($_POST['title'], FILTER_SANITIZE_STRING);
   $description = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
   $url = filter_var($_POST['url'], FILTER_SANITIZE_STRING);
-  $posttime = date("M d, Y: H:i");
+  $posttime = date("j-n-Y");
 
 
   $query = 'INSERT INTO posts (user_id, title, description, url, posttime)
