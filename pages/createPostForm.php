@@ -10,8 +10,8 @@ require __DIR__.'../../views/header.php';
 
     <div class="form-group">
       <label for="title">Title</label>
-      <input type="text" class="form-control" name="title" maxlength="20" required>
-      <small class="form-text text-muted">Title can be a maximum of 20 characters</small>
+      <input type="text" class="form-control" name="title" maxlength="40" required>
+      <small class="form-text text-muted">Title can be a maximum of 40 characters</small>
     </div>
 
     <div class="form-group">

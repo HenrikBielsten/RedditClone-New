@@ -1,0 +1,10 @@
+.postPic {
+  border-radius: 50%;
+  height: 8vh;
+  width: 8vh;
+  margin: 10px 10px 10px 0px;
+}
+
+.postTime {
+  margin: 0;
+}

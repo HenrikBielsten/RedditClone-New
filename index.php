@@ -12,13 +12,31 @@ require __DIR__.'/views/header.php';
 
 <?php foreach ($posts as $post): ?>
 
-<article class="">
+<div class="row">
+<article class="col-md-6">
 
-  <h3><?php echo $post['title']; ?></h3>
-  <a href="<?php echo $post['url']; ?>" target="_blank"><?php echo $post['description']; ?></a>
-  <p>Posted by: <?php echo $post['name']; ?></p>
+<div class="card">
+  <h3 class="card-header"><?php echo $post['title']; ?></h3>
+  <div class="card-body d-flex flex-column">
+    <a class="card-text" href="<?php echo $post['url']; ?>" target="_blank"><?php echo $post['description']; ?></a>
+
+    <img class="postPic" src="
+    <?php if(isset($post['img'])): ?>
+      <?php echo "../images/".$post['img']; ?>
+    <?php else: echo "../images/barack.jpg";?>
+    <?php endif; ?>" alt="">
+    <div class="d-flex justify-content-between align-items-end">
+      <small class="">Posted by: <?php echo $post['username']; ?></small>
+
+
+      <small class="text-muted"><?php echo $post['posttime'] ?></small>
+    </div>
+  </div>
+</div>
+
 
 </article>
+</div>
 
 <?php endforeach; ?>
 
