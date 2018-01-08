@@ -38,9 +38,10 @@ require __DIR__.'/views/header.php';
 
         </div> <!-- End card-body -->
 
-        <div class="card-footer">
+        <div class="card-footer d-flex justify-content-between align-items-end">
           <?php if (isset($_SESSION['user']) && $post['username'] === $_SESSION['user']['username']): ?>
             <a href="/pages/editPostForm.php?id=<?php echo $post['post_id'] ?>">Edit Post</a>
+            <a href="/../app/auth/deletePost.php?id=<?php echo $post['post_id'] ?>">Delete Post</a>
           <?php endif; ?>
         </div> <!-- End Footer -->
 
