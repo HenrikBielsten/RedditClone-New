@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 require __DIR__.'/../autoload.php';
 
+$id = (int)$_SESSION['user']['id'];
+
 if (isset($_POST['title'], $_POST['description'], $_POST['url'])) {
   $title = filter_var($_POST['title'], FILTER_SANITIZE_STRING);
   $description = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
   $url = filter_var($_POST['url'], FILTER_SANITIZE_STRING);
-  $id = (int)$_SESSION['user']['id'];
   $posttime = date("M d, Y: H:i");
 
 
