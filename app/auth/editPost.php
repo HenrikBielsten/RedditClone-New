@@ -12,10 +12,7 @@ require __DIR__.'/../autoload.php';
 
 
   $query = 'UPDATE posts
-            SET title = :title,
-            description = :description,
-            url = :url,
-            posttime = :posttime
+            SET title = :title, description = :description, url = :url, posttime = :posttime
             WHERE post_id = :post_id';
 
   $statement = $pdo->prepare($query);

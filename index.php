@@ -16,9 +16,9 @@ require __DIR__.'/views/header.php';
 
   <div class="row">
 
-    <article class="col-md-6">
+    <article class="col-md-8 d-flex flex-row">
 
-      <div class="card text-white bg-dark">
+      <div class="card text-white bg-dark w-75">
         <h3 class="card-header"><?php echo $post['title']; ?></h3>
         <div class="card-body d-flex flex-column">
           <a class="card-text" href="<?php echo $post['url']; ?>" target="_blank"><?php echo $post['description']; ?></a>
@@ -35,7 +35,6 @@ require __DIR__.'/views/header.php';
             <small class="">Posted by: <?php echo $post['username']; ?></small>
             <small class="text-muted"><?php echo $post['posttime'] ?></small>
           </div> <!-- End Author and Time -->
-
         </div> <!-- End card-body -->
 
         <div class="card-footer d-flex justify-content-between align-items-end">
@@ -44,8 +43,13 @@ require __DIR__.'/views/header.php';
             <a href="/../app/auth/deletePost.php?id=<?php echo $post['post_id'] ?>">Delete Post</a>
           <?php endif; ?>
         </div> <!-- End Footer -->
-
       </div> <!-- End card -->
+
+      <div class="d-flex flex-column justify-content-center ml-3">
+        <a href="#">Vote Up</a>
+        <p class="m-0">Votes: 188</p>
+        <a href="#">Vote Down</a>
+      </div>
 
     </article> <!-- End article -->
 
