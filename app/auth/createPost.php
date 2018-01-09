@@ -12,7 +12,6 @@ if (isset($_POST['title'], $_POST['description'], $_POST['url'])) {
   $url = filter_var($_POST['url'], FILTER_SANITIZE_STRING);
   $posttime = date("d-m-Y, H:i");
 
-
   $query = 'INSERT INTO posts (user_id, title, description, url, posttime)
             VALUES (:id, :title, :description, :url, :posttime)';
 
@@ -25,6 +24,7 @@ if (isset($_POST['title'], $_POST['description'], $_POST['url'])) {
   $statement->bindParam(':posttime', $posttime, PDO::PARAM_STR);
   $statement->execute();
 
+  // This fetches the newly created posts post_id
   $postQuery = "SELECT post_id FROM posts ORDER BY post_id DESC LIMIT 1";
 
   $postStatement = $pdo->prepare($postQuery);
@@ -34,6 +34,7 @@ if (isset($_POST['title'], $_POST['description'], $_POST['url'])) {
 
   $post_id = $postResult['post_id'];
 
+  // The fetched post_id is then used to insert an initial vote (0) for the new post.
   $voteQuery = 'INSERT INTO votes (user_id, post_id, vote_dir) VALUES (:id, :post_id, 0)';
 
   $voteStatement = $pdo->prepare($voteQuery);
