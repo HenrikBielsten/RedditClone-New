@@ -5,8 +5,8 @@ require __DIR__.'/../autoload.php';
 $id = (int)$_SESSION['user']['id'];
 
 // CHANE PROFILE PICTURE
-if (isset( $_FILES["img"]) && !empty($_FILES["img"]["name"])) {
-  if (is_uploaded_file( $_FILES["img"]["tmp_name"] ) && $_FILES["img"]["error"] === 0) {
+if (isset($_FILES["img"]) && !empty($_FILES["img"]["name"])) {
+  if (is_uploaded_file($_FILES["img"]["tmp_name"]) && $_FILES["img"]["error"] === 0) {
     $path = pathinfo($_FILES['img']['name']);
     $extension = $path['extension'];
     $fileName = $_SESSION['user']['username'].'.'.$extension;
