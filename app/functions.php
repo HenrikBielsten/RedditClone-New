@@ -31,12 +31,9 @@ function userInfo($pdo) {
   return $userReturn;
 }
 
-// Fetches database info for the posts
+// Fetches database info for the posts and also the sums up the votes
 function postInfo($pdo) {
-  $postQuery = 'SELECT posts.*, users.* FROM posts
-                JOIN users ON posts.user_id=users.id
-                GROUP BY posts.post_id
-                ORDER BY post_id DESC';
+  $postQuery = "SELECT posts.*, users.*, (SELECT sum(vote_dir) FROM votes WHERE posts.post_id=votes.post_id) AS sum FROM posts JOIN votes ON posts.post_id=votes.post_id JOIN users ON posts.user_id=users.id GROUP BY posts.post_id ORDER BY post_id DESC";
 
   $postStatement = $pdo->prepare($postQuery);
   $postStatement->execute();
@@ -46,6 +43,7 @@ function postInfo($pdo) {
   return $postReturn;
 }
 
+// Sorts posts by time they were posted
 function sortByDate ($a, $b) {
 
     return strtotime ($a['posttime']) < strtotime ($b ['posttime']);

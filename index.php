@@ -47,11 +47,11 @@ require __DIR__.'/views/header.php';
 
       <div class="d-flex flex-column justify-content-center ml-3">
         <?php if (isset($_SESSION['user']) && $post['username'] !== $_SESSION['user']['username']): ?>
-        <button class="btn btn-success btn-sm" type="button" name="up" value="<?php echo $post['post_id']?>">Vote Up</button>
+        <button class="btn btn-success btn-sm" type="button" name="up" data-dir="1" value="<?php echo $post['post_id']?>">Vote Up</button>
         <?php endif; ?>
-        <p class="m-0">Votes: 188</p>
+        <p class="m-0">Votes: <?php echo $post['sum']; ?></p>
         <?php if (isset($_SESSION['user']) && $post['username'] !== $_SESSION['user']['username']): ?>
-        <button class="btn btn-danger btn-sm" type="button" name="down" value="<?php echo $post['post_id']?>">Vote Down</button>
+        <button class="btn btn-danger btn-sm" type="button" name="down" data-dir="-1" value="<?php echo $post['post_id']?>">Vote Down</button>
         <?php endif; ?>
       </div>
 
