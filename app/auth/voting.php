@@ -32,6 +32,8 @@ if (isset($_POST['post_id'])) {
     $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
     $statement->bindParam(':vote_dir', $vote_dir, PDO::PARAM_INT);
     $statement->execute();
+    header("content-type: application/json");
+    echo json_encode($user_id);
   }
 
   // If user has voted previously: update vote
@@ -46,5 +48,9 @@ if (isset($_POST['post_id'])) {
     $statement->bindParam(':vote_dir', $vote_dir, PDO::PARAM_INT);
     $statement->bindParam(':post_id', $post_id, PDO::PARAM_INT);
     $statement->execute();
+    header("content-type: application/json");
+    echo json_encode($user_id);
   }
+
+
 }

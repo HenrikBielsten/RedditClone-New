@@ -44,6 +44,20 @@ function postInfo($pdo) {
   return $postReturn;
 }
 
+function getSum($pdo) {
+  $post_id = (int)$_POST['post_id'];
+
+  $sumQuery = "SELECT sum(vote_dir) AS sum FROM votes WHERE post_id = :post_id";
+
+  $sumStatement = $pdo->prepare($sumQuery);
+  $sumStatement->bindParam(':post_id', $post_id, PDO::PARAM_INT);
+  $sumStatement->execute();
+
+  $sumReturn = $sumStatement->fetchAll(PDO::FETCH_ASSOC);
+
+  return $sumReturn;
+}
+
 // Sorts posts by time they were posted
 function sortByDate ($a, $b) {
 
