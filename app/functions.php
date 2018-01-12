@@ -20,7 +20,7 @@ if (!function_exists('redirect')) {
 // Function to fetch info about the currently logged in user
 function userInfo($pdo) {
   $id = (int)$_SESSION['user']['id'];
-  
+
   $userQuery = "SELECT * FROM users WHERE id = :id";
 
   $userStatement = $pdo->prepare($userQuery);
@@ -32,7 +32,7 @@ function userInfo($pdo) {
   return $userReturn;
 }
 
-// Fetches database info for the posts and also the sums up the votes
+// Fetches database info for the posts and also sums up the votes
 function postInfo($pdo) {
   $postQuery = "SELECT posts.*, users.*, (SELECT sum(vote_dir) FROM votes WHERE posts.post_id=votes.post_id) AS sum FROM posts JOIN votes ON posts.post_id=votes.post_id JOIN users ON posts.user_id=users.id GROUP BY posts.post_id ORDER BY post_id DESC";
 

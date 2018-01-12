@@ -45,15 +45,21 @@ require __DIR__.'/views/header.php';
         </div> <!-- End Footer -->
       </div> <!-- End card -->
 
+      <!-- Vote section -->
       <div class="d-flex flex-column justify-content-center ml-3">
+
+        <!-- If post is not created by current user: displays up vote button -->
         <?php if (isset($_SESSION['user']) && $post['username'] !== $_SESSION['user']['username']): ?>
-        <button class="btn btn-success btn-sm" type="button" name="up" data-dir="1" value="<?php echo $post['post_id']?>">Vote Up</button>
+        <button class=" upVote btn btn-success btn-sm" type="button" name="up" data-user_id="<?php echo $_SESSION['user']['id']; ?>" data-post_id="<?php echo $post['post_id']; ?>" data-vote_dir="1" value="<?php echo $post['post_id']; ?>">Vote Up</button>
         <?php endif; ?>
-        <p class="m-0">Votes: <?php echo $post['sum']; ?></p>
+
+        <p class="m-0">Votes: <?php echo $post['sum']; ?></p> <!-- Shows sum of votes -->
+
+        <!-- If post is not created by current user: displays down vote button -->
         <?php if (isset($_SESSION['user']) && $post['username'] !== $_SESSION['user']['username']): ?>
-        <button class="btn btn-danger btn-sm" type="button" name="down" data-dir="-1" value="<?php echo $post['post_id']?>">Vote Down</button>
+        <button class="downVote btn btn-danger btn-sm" type="button" name="down" data-user_id="<?php echo $_SESSION['user']['id']; ?>" data-post_id="<?php echo $post['post_id'];?>" data-vote_dir="-1" value="<?php echo $post['post_id']; ?>">Vote Down</button>
         <?php endif; ?>
-      </div>
+      </div> <!-- End Vote section -->
 
     </article> <!-- End article -->
 
