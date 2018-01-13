@@ -32,6 +32,7 @@ if (isset($_POST['post_id'])) {
     $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
     $statement->bindParam(':vote_dir', $vote_dir, PDO::PARAM_INT);
     $statement->execute();
+
     header("content-type: application/json");
     echo json_encode($user_id);
   }
@@ -48,6 +49,23 @@ if (isset($_POST['post_id'])) {
     $statement->bindParam(':vote_dir', $vote_dir, PDO::PARAM_INT);
     $statement->bindParam(':post_id', $post_id, PDO::PARAM_INT);
     $statement->execute();
+
+    header("content-type: application/json");
+    echo json_encode($user_id);
+  }
+
+  // If user has voted same direction as now clicked: set vote to 0, i.e not counted
+  if ((int)$voted['vote_dir'] === $vote_dir) {
+
+    $query = 'UPDATE votes SET vote_dir = 0
+              WHERE user_id = :user_id AND post_id = :post_id';
+
+    $statement = $pdo->prepare($query);
+
+    $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+    $statement->bindParam(':post_id', $post_id, PDO::PARAM_INT);
+    $statement->execute();
+
     header("content-type: application/json");
     echo json_encode($user_id);
   }

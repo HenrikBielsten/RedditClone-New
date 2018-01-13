@@ -29,11 +29,13 @@ const voteButton = document.querySelectorAll('.upVote, .downVote');
              return response.json()
            })
 
-     fetch(voteSum, {
-                 method: "POST",
-                 headers: new Headers({"Content-Type": "application/x-www-form-urlencoded"}),
-                 credentials: "include",
-                 body: data
+           .then(newSum => {
+
+             fetch(voteSum, {
+               method: "POST",
+               headers: new Headers({"Content-Type": "application/x-www-form-urlencoded"}),
+               credentials: "include",
+               body: data
              })
 
              .then(response => {
@@ -46,5 +48,7 @@ const voteButton = document.querySelectorAll('.upVote, .downVote');
                votes.innerHTML = "Votes: " + sum.sum;
                console.log(votes);
              });
+           })
+
 
          };
