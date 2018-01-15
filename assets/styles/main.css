@@ -15,3 +15,24 @@
 .p-cursive {
   font-style: italic;
 }
+
+.container {
+  margin: 0;
+}
+
+.main-container {
+  width: 100vw;
+}
+
+.post-container {
+  overflow: scroll;
+}
+
+.profile {
+  height: 87vh;
+  margin-left: 3vw;
+  margin-top: 3vh;
+  margin-right: 3vw;
+  background-color: #795697;
+  padding: 2vh 0 2vh 0;
+}

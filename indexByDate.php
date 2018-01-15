@@ -14,7 +14,6 @@ require __DIR__.'/views/header.php';
   <div class="col-md-4 d-flex flex-collumn justify-content-between">
     <a href="indexByDate.php"><button class="sortDate btn btn-info btn-sm" type="button" name="byDate">Sort By Post Date</button></a>
     <a href="index.php"><button class="sortScore btn btn-info btn-sm" type="button" name="byScore">Sort By Score</button></a>
-
   </div>
 
 </article>
@@ -23,7 +22,7 @@ require __DIR__.'/views/header.php';
 <?php $posts = postInfo($pdo); ?>
 
 <!-- Calls sorting function sorting posts by highest score -->
-<?php usort($posts, 'sortByScore'); ?>
+<?php usort($posts, 'sortByDate'); ?>
 
 <?php foreach ($posts as $post): ?>
 
@@ -46,8 +45,7 @@ require __DIR__.'/views/header.php';
 
           <!-- Author and Time -->
           <div class="d-flex justify-content-between align-items-end">
-
-            <small class="">Posted by: <a href="/pages/otherUserProfile.php?id=<?php echo $post['user_id'] ?>"><?php echo $post['username']; ?></a></small>
+            <small class="">Posted by: <?php echo $post['username']; ?></small>
             <small class="text-muted"><?php echo $post['posttime'] ?></small>
           </div> <!-- End Author and Time -->
         </div> <!-- End card-body -->

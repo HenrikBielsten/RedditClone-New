@@ -3,8 +3,8 @@ declare(strict_types=1);
 require __DIR__.'../../views/header.php';
 ?>
 
-        <?php $infos = userInfo($pdo)?>
-        <?php $posts = postInfo($pdo)?>
+        <?php $infos = otherUserInfo($pdo)?>
+        <?php $posts = otherUserPosts($pdo)?>
 
         <div class="row d-flex profile">
 
@@ -29,19 +29,13 @@ require __DIR__.'../../views/header.php';
 
                 <?php endforeach; ?>
 
-                <br>
-
-                <a href="editProfileForm.php"><button type="button" name="button" class="btn btn-outline-primary btn-sm">Edit Profile</button></a>
-
               </div>
 
               <div class="post-container col-md-5">
 
-                <h1>My Posts</h1>
+                <h1><?php echo $info['name']?> Posts</h1>
 
                 <?php foreach ($posts as $post): ?>
-
-                  <?php if ($post['user_id'] === $_SESSION['user']['id']) : ?>
 
                     <div class="row">
 
@@ -94,8 +88,6 @@ require __DIR__.'../../views/header.php';
                       </article> <!-- End article -->
 
                     </div> <!-- End Row -->
-
-                  <?php endif; ?>
 
                 <?php endforeach; ?>
 
