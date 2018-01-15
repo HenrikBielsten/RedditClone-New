@@ -1,22 +1,22 @@
-const voteButton = document.querySelectorAll('.upVote, .downVote');
+const likeButton = document.querySelectorAll('.like, .unlike');
 
-   voteButton.forEach((button) => {
+  likeButton.forEach((button) => {
 
-     button.addEventListener('click', vote);
+    button.addEventListener('click', like);
 
-   });
+  });
 
- function vote(event) {
+ function like(event) {
 
-   const postId = event.target.dataset.post_id;
-   const voteDir = event.target.dataset.vote_dir;
-   const votes = event.target.parentElement.querySelector('.votes');
+   const likeDir = event.target.dataset.like_dir;
+   const otherUser = event.target.dataset.other_user
+   const likes = event.target.parentElement.querySelector('.likes');
 
-   const data = `post_id=${postId}&vote_dir=${voteDir}`;
-   const voting = "/../../app/auth/voting.php";
-   const voteSum = "/../../app/auth/voteSum.php";
+   const data = `other_user=${otherUser}&like_dir=${likeDir}`;
+   const like = "/../../app/auth/like.php";
+   const likeSum = "/../../app/auth/likeSum.php";
 
-   fetch(voting, {
+   fetch(like, {
                method: "POST",
                headers: new Headers({"Content-Type": "application/x-www-form-urlencoded"}),
                credentials: "include",
@@ -29,7 +29,7 @@ const voteButton = document.querySelectorAll('.upVote, .downVote');
 
            .then(newSum => {
 
-             fetch(voteSum, {
+             fetch(likeSum, {
                method: "POST",
                headers: new Headers({"Content-Type": "application/x-www-form-urlencoded"}),
                credentials: "include",
@@ -41,7 +41,7 @@ const voteButton = document.querySelectorAll('.upVote, .downVote');
              })
 
              .then(sum => {
-               votes.innerHTML = "Votes: " + sum.sum;
+               likes.innerHTML = sum.sum;
              });
            })
 

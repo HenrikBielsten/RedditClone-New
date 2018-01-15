@@ -5,6 +5,7 @@ require __DIR__.'../../views/header.php';
 
         <?php $infos = userInfo($pdo)?>
         <?php $posts = postInfo($pdo)?>
+        <?php $likeSum = getOwnLikeSum($pdo)?>
 
         <div class="row d-flex profile">
 
@@ -24,7 +25,7 @@ require __DIR__.'../../views/header.php';
                     <div class="">
                       <div class="star d-flex flex-row align-items-center justify-content-around">
                         <img src="/../images/star.png" alt="">
-                        <h5 class="mt-4 ml-3"><?php echo $info['stars']; ?></h5>
+                        <h5 class="likes mt-4 ml-3"><?php echo $likeSum['sum']; ?></h5>
                       </div>
 
                     </div>

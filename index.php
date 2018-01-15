@@ -68,7 +68,7 @@ require __DIR__.'/views/header.php';
         <button class=" upVote btn btn-success btn-sm" type="button" name="up" data-user_id="<?php echo $_SESSION['user']['id']; ?>" data-post_id="<?php echo $post['post_id']; ?>" data-vote_dir="1">Vote Up</button>
         <?php endif; ?>
 
-        <p class="votes m-0" data-post_id_div="<?php echo $post['post_id']; ?>">Votes: <?php echo $post['sum']; ?></p> <!-- Shows sum of votes -->
+        <p class="votes m-0">Votes: <?php echo $post['sum']; ?></p> <!-- Shows sum of votes -->
 
         <!-- If post is not created by current user: displays down vote button -->
         <?php if (isset($_SESSION['user']) && $post['username'] !== $_SESSION['user']['username']): ?>

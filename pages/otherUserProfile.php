@@ -5,6 +5,7 @@ require __DIR__.'../../views/header.php';
 
         <?php $infos = otherUserInfo($pdo)?>
         <?php $posts = otherUserPosts($pdo)?>
+        <?php $likeSum = getLikeSum($pdo)?>
 
         <div class="row d-flex profile">
 
@@ -24,10 +25,11 @@ require __DIR__.'../../views/header.php';
                     <div class="">
                       <div class="star d-flex flex-row align-items-center justify-content-around">
                         <img src="/../images/star.png" alt="">
-                        <h5 class="mt-4 ml-3"><?php echo $info['stars']; ?></h5>
+                        <h5 class="likes mt-4 ml-3"><?php echo $likeSum['sum']; ?></h5>
                       </div>
 
-                      <button class="btn btn-success btn-sm" type="button" name="like" data-user_id="<?php echo $_SESSION['user']['id']; ?>" data-like_id="<?php echo $post['post_id'];?>" data-vote="1">Like</button>
+                      <button class="like btn btn-success btn-sm" type="button" name="like" data-like_dir="1" data-other_user="<?php echo $info['id']; ?>">Like</button>
+                      <button class="unlike btn btn-success btn-sm" type="button" name="like" data-like_dir="0" data-other_user="<?php echo $info['id']; ?>">Unlike</button>
 
                     </div>
 
@@ -108,9 +110,5 @@ require __DIR__.'../../views/header.php';
               </div>
 
           </div>
-
-
-
-
 
 <?php require __DIR__.'../../views/footer.php'; ?>

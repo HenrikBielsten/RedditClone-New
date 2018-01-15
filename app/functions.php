@@ -46,8 +46,9 @@ function postInfo($pdo) {
 
 // Fetches database info on another user than currently logged in
 function otherUserInfo($pdo) {
-  $id = $_GET['id'];
-  $query = "SELECT id, name, username, email, biography, img, stars FROM users WHERE id = :id";
+  $id = (int)$_GET['id'];
+  
+  $query = "SELECT id, name, username, email, biography, img FROM users WHERE id = :id";
 
   $statement = $pdo->prepare($query);
   $statement->bindParam(':id', $id, PDO::PARAM_INT);
@@ -61,7 +62,7 @@ function otherUserInfo($pdo) {
 
 // Fetches database info on posts made by a certain user
 function otherUserPosts($pdo) {
-  $id = $_GET['id'];
+  $id = (int)$_GET['id'];
 
   $query = "SELECT posts.*, users.*, (SELECT sum(vote_dir) FROM votes WHERE posts.post_id=votes.post_id) AS sum FROM posts JOIN votes ON posts.post_id=votes.post_id JOIN users ON posts.user_id=users.id WHERE id = :id GROUP BY posts.post_id ORDER BY post_id DESC";
 
@@ -70,6 +71,34 @@ function otherUserPosts($pdo) {
   $statement->execute();
 
   $resultQuery = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+  return $resultQuery;
+}
+
+function getLikeSum($pdo) {
+  $id = (int)$_GET['id'];
+
+  $query = "SELECT sum(like_dir) AS sum FROM likes WHERE other_user = :id";
+
+  $statement = $pdo->prepare($query);
+  $statement->bindParam(':id', $id, PDO::PARAM_INT);
+  $statement->execute();
+
+  $resultQuery = $statement->fetch(PDO::FETCH_ASSOC);
+
+  return $resultQuery;
+}
+
+function getOwnLikeSum($pdo) {
+  $id = (int)$_SESSION['user']['id'];
+
+  $query = "SELECT sum(like_dir) AS sum FROM likes WHERE other_user = :id";
+
+  $statement = $pdo->prepare($query);
+  $statement->bindParam(':id', $id, PDO::PARAM_INT);
+  $statement->execute();
+
+  $resultQuery = $statement->fetch(PDO::FETCH_ASSOC);
 
   return $resultQuery;
 }
