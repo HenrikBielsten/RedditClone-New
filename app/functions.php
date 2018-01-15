@@ -47,7 +47,7 @@ function postInfo($pdo) {
 // Fetches database info on another user than currently logged in
 function otherUserInfo($pdo) {
   $id = $_GET['id'];
-  $query = "SELECT id, name, username, email, biography, img FROM users WHERE id = :id";
+  $query = "SELECT id, name, username, email, biography, img, stars FROM users WHERE id = :id";
 
   $statement = $pdo->prepare($query);
   $statement->bindParam(':id', $id, PDO::PARAM_INT);
@@ -59,7 +59,7 @@ function otherUserInfo($pdo) {
   return $resultQuery;
 }
 
-// Fetches database info on posts made by a certain user 
+// Fetches database info on posts made by a certain user
 function otherUserPosts($pdo) {
   $id = $_GET['id'];
 

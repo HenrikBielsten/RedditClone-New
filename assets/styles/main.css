@@ -36,3 +36,8 @@
   background-color: #795697;
   padding: 2vh 0 2vh 0;
 }
+
+.star img {
+  width: 3vw;
+  height: 3vw;
+}

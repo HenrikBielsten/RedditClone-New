@@ -12,12 +12,24 @@ require __DIR__.'../../views/header.php';
 
                 <?php foreach ($infos as $info): ?>
 
-                  <!-- If no image exists, use default image -->
-                  <img class="profilePic" src="
-                  <?php if(isset($info['img'])): ?>
-                    <?php echo "../images/".$info['img']; ?>
-                  <?php else: echo "../images/noimage.png";?>
-                  <?php endif; ?>" alt="">
+                  <div class="d-flex flex-row justify-content-around align-items-center">
+
+                    <!-- If no image exists, use default image -->
+                    <img class="profilePic" src="
+                    <?php if(isset($info['img'])): ?>
+                      <?php echo "../images/".$info['img']; ?>
+                    <?php else: echo "../images/noimage.png";?>
+                    <?php endif; ?>" alt="">
+
+                    <div class="">
+                      <div class="star d-flex flex-row align-items-center justify-content-around">
+                        <img src="/../images/star.png" alt="">
+                        <h5 class="mt-4 ml-3"><?php echo $info['stars']; ?></h5>
+                      </div>
+
+                    </div>
+
+                  </div>
 
                   <div class="card-body card border-primary col-md-8 text-center">
                     <h1 class="card-title"><?php echo $info['name'];?></h1>
