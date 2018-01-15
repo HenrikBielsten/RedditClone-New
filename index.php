@@ -8,11 +8,17 @@ require __DIR__.'/views/header.php';
     <p>This is the home page.</p>
 </article>
 
+<div class="col-md-4 d-flex flex-collumn justify-content-between">
+  <button class="sortDate btn btn-info btn-sm" type="button" name="down" data-sort="date" onclick="usort($post, postByDate)">Sort By Post Date</button>
+  <button class="sortScore btn btn-info btn-sm" type="button" name="down" data-sort="score" onclick="usort($post, postByDate)">Sort By Score</button>
+</div>
+
 <?php $posts = postInfo($pdo); ?>
 
-<?php usort($posts, 'sortByDate'); ?>
+<?php usort($posts, 'sortByScore'); ?>
 
 <?php foreach ($posts as $post): ?>
+
 
   <div class="row">
 
@@ -39,7 +45,7 @@ require __DIR__.'/views/header.php';
 
         <div class="card-footer d-flex justify-content-between align-items-end">
           <?php if (isset($_SESSION['user']) && $post['username'] === $_SESSION['user']['username']): ?>
-            <a href="/pages/editPostForm.php?id=<?php echo $post['post_id'] ?>">Edit Post</a>
+            <a href="/app/auth/userCheck.php?id=<?php echo $post['post_id'] ?>">Edit Post</a>
             <a href="/../app/auth/deletePost.php?id=<?php echo $post['post_id'] ?>">Delete Post</a>
           <?php endif; ?>
         </div> <!-- End Footer -->
@@ -53,7 +59,7 @@ require __DIR__.'/views/header.php';
         <button class=" upVote btn btn-success btn-sm" type="button" name="up" data-user_id="<?php echo $_SESSION['user']['id']; ?>" data-post_id="<?php echo $post['post_id']; ?>" data-vote_dir="1">Vote Up</button>
         <?php endif; ?>
 
-        <p class="votes m-0">Votes: <?php echo $post['sum']; ?></p> <!-- Shows sum of votes -->
+        <p class="votes m-0" data-post_id_div="<?php echo $post['post_id']; ?>">Votes: <?php echo $post['sum']; ?></p> <!-- Shows sum of votes -->
 
         <!-- If post is not created by current user: displays down vote button -->
         <?php if (isset($_SESSION['user']) && $post['username'] !== $_SESSION['user']['username']): ?>

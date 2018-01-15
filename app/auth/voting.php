@@ -69,6 +69,4 @@ if (isset($_POST['post_id'])) {
     header("content-type: application/json");
     echo json_encode($user_id);
   }
-
-
 }

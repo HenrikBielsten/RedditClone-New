@@ -1,6 +1,5 @@
 const voteButton = document.querySelectorAll('.upVote, .downVote');
 
-
    voteButton.forEach((button) => {
 
      button.addEventListener('click', vote);
@@ -11,10 +10,9 @@ const voteButton = document.querySelectorAll('.upVote, .downVote');
 
    const postId = event.target.dataset.post_id;
    const voteDir = event.target.dataset.vote_dir;
-   const userId = event.target.dataset.user_id;
    const votes = event.target.parentElement.querySelector('.votes');
 
-   const data = `post_id=${postId}&vote_dir=${voteDir}&user_id=${userId}`;
+   const data = `post_id=${postId}&vote_dir=${voteDir}`;
    const voting = "/../../app/auth/voting.php";
    const voteSum = "/../../app/auth/voteSum.php";
 

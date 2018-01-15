@@ -4,6 +4,7 @@ declare(strict_types=1);
 require __DIR__.'../../views/header.php';
 
 $post_id = $_GET['id'];
+
 $query = "SELECT * FROM posts WHERE post_id = :post_id";
 
 $statement = $pdo->prepare($query);

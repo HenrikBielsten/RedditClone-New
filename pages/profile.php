@@ -5,6 +5,7 @@ require __DIR__.'../../views/header.php';
       <article class="">
 
         <?php $infos = userInfo($pdo)?>
+        <?php $posts = postInfo($pdo)?>
 
         <?php foreach ($infos as $info): ?>
 
@@ -22,6 +23,12 @@ require __DIR__.'../../views/header.php';
               <p class="card-text text-left card bio"><?php echo $info['biography'];?></p>
               <i class="card-text text-left">Email: <?php echo $info['email'];?></i>
           </div>
+
+        <?php endforeach; ?>
+
+        <?php foreach ($posts as $post): ?>
+
+          
 
         <?php endforeach; ?>
 
