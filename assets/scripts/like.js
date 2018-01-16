@@ -1,6 +1,6 @@
 const likeButtons = document.querySelectorAll('.like, .unlike');
-const likeButton = document.querySelector('.like');
-const unlikeButton = document.querySelector('.unlike');
+const likeButton1 = document.querySelector('.like');
+const unlikeButton1 = document.querySelector('.unlike');
 
   likeButtons.forEach((button) => {
 
@@ -49,13 +49,13 @@ const unlikeButton = document.querySelector('.unlike');
 
            // Toggles which button is shown depending on what button is pressed
            if (likeDir == 1) {
-             likeButton.style.visibility = "hidden";
-             unlikeButton.style.visibility = "visible";
+             likeButton1.style.visibility = "hidden";
+             unlikeButton1.style.visibility = "visible";
            }
 
            else if (likeDir == 0) {
-             likeButton.style.visibility = "visible";
-             unlikeButton.style.visibility = "hidden";
+             likeButton1.style.visibility = "visible";
+             unlikeButton1.style.visibility = "hidden";
            }
 
          };

@@ -29,26 +29,30 @@ require __DIR__.'../../views/header.php';
                         <h5 class="likes mt-4 ml-3"><?php echo $likeSum['sum']; ?></h5>
                       </div>
 
-                      <!-- If user has previously liked this user profile or has not voted: show unlike button -->
-                      <?php if ($likeDir === 1 || !$likeDir): ?>
-                        <script type="text/javascript">
-                          likeButton.style.visibility = "hidden";
-                          unlikeButton.style.visibility = "visible";
-                        </script>
-                      <?php endif; ?>
-
-                      <!-- If user not yet liked this user profile: show like button -->
-                      <?php if ($likeDir === 0): ?>
-                        <script type="text/javascript">
-                          likeButton.style.visibility = "hidden";
-                          unlikeButton.style.visibility = "visible";
-                        </script>
-                      <?php endif; ?>
-
                       <button class="like btn btn-success btn-sm" type="button" name="like" data-like_dir="1" data-other_user="<?php echo $info['id']; ?>">Like</button>
 
                       <button class="unlike btn btn-success btn-sm" type="button" name="like" data-like_dir="0" data-other_user="<?php echo $info['id']; ?>">Unlike</button>
 
+                      <!-- If user has previously liked this user profile or has not voted: show unlike button -->
+                      <?php if ($likeDir['like_dir'] == 1): ?>
+                        <script type="text/javascript">
+                        const likeButton = document.querySelector('.like');
+                        const unlikeButton = document.querySelector('.unlike');
+
+                        likeButton.style.visibility = "hidden";
+                        unlikeButton.style.visibility = "visible";
+                        </script>
+
+                        <!-- If user not yet liked this user profile: show like button -->
+                      <?php elseif ($likeDir['like_dir'] == 0): ?>
+                        <script type="text/javascript">
+                        const likeButton = document.querySelector('.like');
+                        const unlikeButton = document.querySelector('.unlike');
+
+                        likeButton.style.visibility = "visible";
+                        unlikeButton.style.visibility = "hidden";
+                        </script>
+                      <?php endif; ?>
 
                     </div>
 
