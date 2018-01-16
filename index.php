@@ -50,8 +50,10 @@ require __DIR__.'/views/header.php';
             <small class="">Posted by:
               <?php if (isset($_SESSION['user']) && $post['username'] !== $_SESSION['user']['username']): ?>
                 <a href="/pages/otherUserProfile.php?id=<?php echo $post['user_id'] ?>"><?php echo $post['username']; ?></a></small>
-              <?php else: ?>
+              <?php elseif (isset($_SESSION['user']) && $post['username'] === $_SESSION['user']['username']): ?>
                 <?php echo $post['username']; ?></small>
+              <?php else: ?>
+                <a href="/pages/otherUserProfile.php?id=<?php echo $post['user_id'] ?>"><?php echo $post['username']; ?></a></small>
               <?php endif; ?>
             <small class="text-muted"><?php echo $post['posttime'] ?></small>
           </div> <!-- End Author and Time -->

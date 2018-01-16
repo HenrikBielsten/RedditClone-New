@@ -41,3 +41,11 @@
   width: 3vw;
   height: 3vw;
 }
+
+.like {
+  visibility: visible;
+}
+
+.unlike {
+  visibility: hidden;
+}

@@ -75,6 +75,7 @@ function otherUserPosts($pdo) {
   return $resultQuery;
 }
 
+// Fetches database info on likes given to certain user
 function getLikeSum($pdo) {
   $id = (int)$_GET['id'];
 
@@ -89,6 +90,7 @@ function getLikeSum($pdo) {
   return $resultQuery;
 }
 
+// Fetches database info on likes given to logged in user
 function getOwnLikeSum($pdo) {
   $id = (int)$_SESSION['user']['id'];
 
@@ -103,30 +105,20 @@ function getOwnLikeSum($pdo) {
   return $resultQuery;
 }
 
-function getLatestCreatedUser($pd) {
-  $query = "SELECT id FROM users ORDER BY id DESC LIMIT 1";
+function getLikeDirection($pdo) {
+  $id = (int)$_GET['id'];
+  $user_id = (int)$_SESSION['user']['id'];
+
+  $query = "SELECT like_dir FROM likes WHERE other_user = :id AND user_id = :user_id";
 
   $statement = $pdo->prepare($query);
+  $statement->bindParam(':id', $id, PDO::PARAM_INT);
+  $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
   $statement->execute();
 
-  $result = $statement->fetch(PDO::FETCH_ASSOC);
+  $resultQuery = $statement->fetch(PDO::FETCH_ASSOC);
 
-  $user_id = $result['id'];
-
-  return $user_id;
-}
-
-function getLatestPostId($pdo) {
-  $postQuery = "SELECT post_id FROM posts ORDER BY post_id DESC LIMIT 1";
-
-  $postStatement = $pdo->prepare($postQuery);
-  $postStatement->execute();
-
-  $postResult = $postStatement->fetch(PDO::FETCH_ASSOC);
-
-  $post_id = $postResult['post_id'];
-
-  return $post_id;
+  return $resultQuery;
 }
 
 // Sorts posts by time they were posted

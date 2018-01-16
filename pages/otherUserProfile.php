@@ -6,6 +6,7 @@ require __DIR__.'../../views/header.php';
         <?php $infos = otherUserInfo($pdo)?>
         <?php $posts = otherUserPosts($pdo)?>
         <?php $likeSum = getLikeSum($pdo)?>
+        <?php $likeDir = getLikeDirection($pdo)?>
 
         <div class="row d-flex profile">
 
@@ -28,8 +29,26 @@ require __DIR__.'../../views/header.php';
                         <h5 class="likes mt-4 ml-3"><?php echo $likeSum['sum']; ?></h5>
                       </div>
 
+                      <!-- If user has previously liked this user profile or has not voted: show unlike button -->
+                      <?php if ($likeDir === 1 || !$likeDir): ?>
+                        <script type="text/javascript">
+                          likeButton.style.visibility = "hidden";
+                          unlikeButton.style.visibility = "visible";
+                        </script>
+                      <?php endif; ?>
+
+                      <!-- If user not yet liked this user profile: show like button -->
+                      <?php if ($likeDir === 0): ?>
+                        <script type="text/javascript">
+                          likeButton.style.visibility = "hidden";
+                          unlikeButton.style.visibility = "visible";
+                        </script>
+                      <?php endif; ?>
+
                       <button class="like btn btn-success btn-sm" type="button" name="like" data-like_dir="1" data-other_user="<?php echo $info['id']; ?>">Like</button>
+
                       <button class="unlike btn btn-success btn-sm" type="button" name="like" data-like_dir="0" data-other_user="<?php echo $info['id']; ?>">Unlike</button>
+
 
                     </div>
 
