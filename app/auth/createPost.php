@@ -38,8 +38,10 @@ if (isset($_POST['title'], $_POST['description'], $_POST['url'])) {
   $voteQuery = 'INSERT INTO votes (user_id, post_id, vote_dir) VALUES (:id, :post_id, 0)';
 
   $voteStatement = $pdo->prepare($voteQuery);
+
   $voteStatement->bindParam(':id', $id, PDO::PARAM_INT);
   $voteStatement->bindParam(':post_id', $post_id, PDO::PARAM_STR);
+  
   $voteStatement->execute();
 
   redirect('/../../index.php');

@@ -9,7 +9,7 @@ require __DIR__.'../../views/header.php';
 <article>
     <h1>Create Account</h1>
 
-    <form action="../app/auth/create.php" method="post">
+    <form action="../app/auth/createUser.php" method="post">
         <div class="form-group">
             <label for="name">Name</label>
             <input class="form-control" type="text" name="name" placeholder="Firstname af Lastname" required>

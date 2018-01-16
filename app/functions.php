@@ -47,7 +47,7 @@ function postInfo($pdo) {
 // Fetches database info on another user than currently logged in
 function otherUserInfo($pdo) {
   $id = (int)$_GET['id'];
-  
+
   $query = "SELECT id, name, username, email, biography, img FROM users WHERE id = :id";
 
   $statement = $pdo->prepare($query);
@@ -101,6 +101,32 @@ function getOwnLikeSum($pdo) {
   $resultQuery = $statement->fetch(PDO::FETCH_ASSOC);
 
   return $resultQuery;
+}
+
+function getLatestCreatedUser($pd) {
+  $query = "SELECT id FROM users ORDER BY id DESC LIMIT 1";
+
+  $statement = $pdo->prepare($query);
+  $statement->execute();
+
+  $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+  $user_id = $result['id'];
+
+  return $user_id;
+}
+
+function getLatestPostId($pdo) {
+  $postQuery = "SELECT post_id FROM posts ORDER BY post_id DESC LIMIT 1";
+
+  $postStatement = $pdo->prepare($postQuery);
+  $postStatement->execute();
+
+  $postResult = $postStatement->fetch(PDO::FETCH_ASSOC);
+
+  $post_id = $postResult['post_id'];
+
+  return $post_id;
 }
 
 // Sorts posts by time they were posted
