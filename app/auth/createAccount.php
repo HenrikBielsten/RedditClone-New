@@ -25,6 +25,7 @@ if (isset($_POST['name'], $_POST['username'], $_POST['email'], $_POST['password'
 
   $statement->execute();
 
+  // This fetches the newly created users ID so that we can use it below
   $idQuery = "SELECT id FROM users WHERE username = :username";
 
   $idStatement = $pdo->prepare($idQuery);
@@ -37,8 +38,7 @@ if (isset($_POST['name'], $_POST['username'], $_POST['email'], $_POST['password'
 
   $user_id = $result['id'];
 
-  // This inserts a new like
-
+  // This inserts a new like set to 0. The like is "made by" the newly created user just to make the start value of the likes 0 and not NULL.
   $likeQuery = "INSERT INTO likes (user_id, other_user, like_dir) VALUES (:user_id, :user_id, 0)";
 
   $likeStatement = $pdo->prepare($likeQuery);

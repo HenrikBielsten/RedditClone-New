@@ -105,6 +105,7 @@ function getOwnLikeSum($pdo) {
   return $resultQuery;
 }
 
+// Fetches information on wether current user has liked or unliked certain user
 function getLikeDirection($pdo) {
   $id = (int)$_GET['id'];
   $user_id = (int)$_SESSION['user']['id'];

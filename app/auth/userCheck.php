@@ -14,7 +14,7 @@ $statement->execute();
 $post = $statement->fetch(PDO::FETCH_ASSOC);
 
 if (isset($_SESSION['user']) && $post['user_id'] === $_SESSION['user']['id']) {
-  redirect("/../../pages/$page.php?id=$post_id");
+  redirect("$page.php?id=$post_id");
 } else {
   redirect("../../index.php");
 }

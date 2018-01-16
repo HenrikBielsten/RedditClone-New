@@ -1,3 +1,5 @@
+'use strict';
+
 const likeButtons = document.querySelectorAll('.like, .unlike');
 const likeButton1 = document.querySelector('.like');
 const unlikeButton1 = document.querySelector('.unlike');

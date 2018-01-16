@@ -12,12 +12,12 @@ require __DIR__.'../../views/header.php';
   <form action="../app/auth/createAccount.php" method="post">
     <div class="form-group">
       <label for="name">Name</label>
-      <input class="form-control" type="text" name="name" placeholder="Firstname af Lastname" required>
+      <input class="form-control" type="text" name="name" maxlength="30" placeholder="Firstname af Lastname" required>
     </div><!-- /form-group -->
 
     <div class="form-group">
       <label for="username">Username</label> <label class="alreadyExists text-danger small"></label>
-      <input class="form-control usernameField" type="text" name="username" placeholder="Awesome_Username90" required>
+      <input class="form-control usernameField" type="text" name="username" maxlength="20" placeholder="Awesome_Username90" required>
 
     </div><!-- /form-group -->
 
@@ -33,11 +33,11 @@ require __DIR__.'../../views/header.php';
 
     <div class="form-group">
       <label for="password">Password</label>
-      <input class="form-control password" type="password" name="password" placeholder="********" required>
+      <input class="form-control password" type="password" name="password" maxlength="30" placeholder="********" required>
     </div><!-- /form-group -->
 
 
-    <button type="submit" class="btn btn-primary">Create Account</button>
+    <button type="submit" class="create-account-button btn btn-primary">Create Account</button>
   </form>
 
 </article>

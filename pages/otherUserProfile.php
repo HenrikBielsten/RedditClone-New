@@ -6,7 +6,15 @@ require __DIR__.'../../views/header.php';
 <?php $infos = otherUserInfo($pdo)?>
 <?php $posts = otherUserPosts($pdo)?>
 <?php $likeSum = getLikeSum($pdo)?>
-<?php $likeDir = getLikeDirection($pdo)?>
+<?php
+
+if (isset($_SESSION['user']['user_id'])) {
+  $likeDir = getLikeDirection($pdo);
+}
+
+?>
+
+<?php usort($posts, 'sortByScore'); ?>
 
 <div class="row d-flex profile">
 
@@ -29,9 +37,11 @@ require __DIR__.'../../views/header.php';
             <h5 class="likes mt-4 ml-3"><?php echo $likeSum['sum']; ?></h5>
           </div>
 
-          <button class="like btn btn-success btn-sm" type="button" name="like" data-like_dir="1" data-other_user="<?php echo $info['id']; ?>">Like</button>
+          <?php if (isset($_SESSION['user']['user_id'])) : ?>
+            <button class="like btn btn-success btn-sm" type="button" name="like" data-like_dir="1" data-other_user="<?php echo $info['id']; ?>">Like</button>
 
-          <button class="unlike btn btn-success btn-sm" type="button" name="like" data-like_dir="0" data-other_user="<?php echo $info['id']; ?>">Unlike</button>
+            <button class="unlike btn btn-success btn-sm" type="button" name="like" data-like_dir="0" data-other_user="<?php echo $info['id']; ?>">Unlike</button>
+          <?php endif; ?>
 
           <!-- If user has previously liked this user profile or has not voted: show unlike button -->
           <?php if (isset($likeDir['like_dir']) && $likeDir['like_dir'] == 1): ?>

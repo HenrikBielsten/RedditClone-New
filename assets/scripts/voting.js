@@ -1,3 +1,5 @@
+'use strict';
+
 const voteButton = document.querySelectorAll('.upVote, .downVote');
 
 voteButton.forEach((button) => {
