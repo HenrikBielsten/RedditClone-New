@@ -9,8 +9,7 @@ if (isset($_POST['like_dir'])) {
   $other_user = (int)$_POST['other_user'];
   $like_dir = (int)$_POST['like_dir'];
 
-  $hasLikedQuery = 'SELECT user_id, like_dir, other_user FROM likes
-                    WHERE user_id = :user_id AND other_user = :other_user';
+  $hasLikedQuery = 'SELECT user_id, like_dir, other_user FROM likes WHERE user_id = :user_id AND other_user = :other_user';
 
   $hasLikedStatement = $pdo->prepare($hasLikedQuery);
 
@@ -23,8 +22,7 @@ if (isset($_POST['like_dir'])) {
   // If user has not liked previously: insert like
   if (!$liked) {
 
-    $query = 'INSERT INTO likes (user_id, other_user, like_dir)
-              VALUES (:user_id, :other_user, :like_dir)';
+    $query = 'INSERT INTO likes (user_id, other_user, like_dir) VALUES (:user_id, :other_user, :like_dir)';
 
     $statement = $pdo->prepare($query);
 
@@ -40,8 +38,7 @@ if (isset($_POST['like_dir'])) {
   // If user has liked previously: unlike
   elseif (isset($liked['like_dir']) && (int)$liked['like_dir'] !== $like_dir) {
 
-    $query = 'UPDATE likes SET like_dir = :like_dir
-              WHERE user_id = :user_id AND other_user = :other_user';
+    $query = 'UPDATE likes SET like_dir = :like_dir WHERE user_id = :user_id AND other_user = :other_user';
 
     $statement = $pdo->prepare($query);
 

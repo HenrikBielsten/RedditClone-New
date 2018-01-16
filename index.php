@@ -10,7 +10,7 @@ require __DIR__.'/views/header.php';
     <p>This is the home page.</p>
   </article>
 
-<!-- Buttons to switch between displaying posts by score or by date posted -->
+  <!-- Buttons to switch between displaying posts by score or by date posted -->
   <div class="col-md-4 d-flex flex-collumn justify-content-between">
     <a href="indexByDate.php"><button class="sortDate btn btn-info btn-sm" type="button" name="byDate">Sort By Post Date</button></a>
     <a href="index.php"><button class="sortScore btn btn-info btn-sm" type="button" name="byScore">Sort By Score</button></a>
@@ -55,38 +55,38 @@ require __DIR__.'/views/header.php';
               <?php else: ?>
                 <a href="/pages/otherUserProfile.php?id=<?php echo $post['user_id'] ?>"><?php echo $post['username']; ?></a></small>
               <?php endif; ?>
-            <small class="text-muted"><?php echo $post['posttime'] ?></small>
-          </div> <!-- End Author and Time -->
-        </div> <!-- End card-body -->
+              <small class="text-muted"><?php echo $post['posttime'] ?></small>
+            </div> <!-- End Author and Time -->
+          </div> <!-- End card-body -->
 
-        <div class="card-footer d-flex justify-content-between align-items-end">
-          <?php if (isset($_SESSION['user']) && $post['username'] === $_SESSION['user']['username']): ?>
-            <a href="/app/auth/userCheck.php?id=<?php echo $post['post_id'] ?>&page=editPostForm">Edit Post</a>
-            <a href="/app/auth/userCheck.php?id=<?php echo $post['post_id'] ?>&page=deletePost">Delete Post</a>
+          <div class="card-footer d-flex justify-content-between align-items-end">
+            <?php if (isset($_SESSION['user']) && $post['username'] === $_SESSION['user']['username']): ?>
+              <a href="/app/auth/userCheck.php?id=<?php echo $post['post_id'] ?>&page=editPostForm">Edit Post</a>
+              <a href="/app/auth/userCheck.php?id=<?php echo $post['post_id'] ?>&page=deletePost">Delete Post</a>
+            <?php endif; ?>
+          </div> <!-- End Footer -->
+        </div> <!-- End card -->
+
+        <!-- Vote section -->
+        <div class="voteSection d-flex flex-column justify-content-center pl-3 mb-3">
+
+          <!-- If post is not created by current user: displays up vote button -->
+          <?php if (isset($_SESSION['user']) && $post['username'] !== $_SESSION['user']['username']): ?>
+            <button class=" upVote btn btn-success btn-sm" type="button" name="up" data-user_id="<?php echo $_SESSION['user']['id']; ?>" data-post_id="<?php echo $post['post_id']; ?>" data-vote_dir="1">Vote Up</button>
           <?php endif; ?>
-        </div> <!-- End Footer -->
-      </div> <!-- End card -->
 
-      <!-- Vote section -->
-      <div class="voteSection d-flex flex-column justify-content-center pl-3 mb-3">
+          <p class="votes m-0">Votes: <?php echo $post['sum']; ?></p> <!-- Shows sum of votes -->
 
-        <!-- If post is not created by current user: displays up vote button -->
-        <?php if (isset($_SESSION['user']) && $post['username'] !== $_SESSION['user']['username']): ?>
-        <button class=" upVote btn btn-success btn-sm" type="button" name="up" data-user_id="<?php echo $_SESSION['user']['id']; ?>" data-post_id="<?php echo $post['post_id']; ?>" data-vote_dir="1">Vote Up</button>
-        <?php endif; ?>
+          <!-- If post is not created by current user: displays down vote button -->
+          <?php if (isset($_SESSION['user']) && $post['username'] !== $_SESSION['user']['username']): ?>
+            <button class="downVote btn btn-danger btn-sm" type="button" name="down" data-user_id="<?php echo $_SESSION['user']['id']; ?>" data-post_id="<?php echo $post['post_id'];?>" data-vote_dir="-1">Vote Down</button>
+          <?php endif; ?>
+        </div> <!-- End Vote section -->
 
-        <p class="votes m-0">Votes: <?php echo $post['sum']; ?></p> <!-- Shows sum of votes -->
+      </article> <!-- End article -->
 
-        <!-- If post is not created by current user: displays down vote button -->
-        <?php if (isset($_SESSION['user']) && $post['username'] !== $_SESSION['user']['username']): ?>
-        <button class="downVote btn btn-danger btn-sm" type="button" name="down" data-user_id="<?php echo $_SESSION['user']['id']; ?>" data-post_id="<?php echo $post['post_id'];?>" data-vote_dir="-1">Vote Down</button>
-        <?php endif; ?>
-      </div> <!-- End Vote section -->
+    </div> <!-- End Row -->
 
-    </article> <!-- End article -->
+  <?php endforeach; ?>
 
-  </div> <!-- End Row -->
-
-<?php endforeach; ?>
-
-<?php require __DIR__.'/views/footer.php'; ?>
+  <?php require __DIR__.'/views/footer.php'; ?>

@@ -43,7 +43,7 @@ $post = $statement->fetch(PDO::FETCH_ASSOC);
 
   </form>
 
-  </div>
+</div>
 
 <?php endif; ?>
 

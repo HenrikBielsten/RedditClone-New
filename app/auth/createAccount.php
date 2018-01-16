@@ -13,8 +13,7 @@ if (isset($_POST['name'], $_POST['username'], $_POST['email'], $_POST['password'
 
   $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-  $query = 'INSERT INTO users (name, username, email, password, biography)
-            VALUES (:name, :username, :email, :password, :biography)';
+  $query = 'INSERT INTO users (name, username, email, password, biography) VALUES (:name, :username, :email, :password, :biography)';
 
   $statement = $pdo->prepare($query);
 

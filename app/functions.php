@@ -3,18 +3,18 @@
 declare(strict_types=1);
 
 if (!function_exists('redirect')) {
-    /**
-     * Redirect the user to given path.
-     *
-     * @param string $path
-     *
-     * @return void
-     */
-    function redirect($path)
-    {
-        header("Location: ${path}");
-        exit;
-    }
+  /**
+  * Redirect the user to given path.
+  *
+  * @param string $path
+  *
+  * @return void
+  */
+  function redirect($path)
+  {
+    header("Location: ${path}");
+    exit;
+  }
 }
 
 // Fetches database info for the currently logged in user
@@ -124,7 +124,7 @@ function getLikeDirection($pdo) {
 // Sorts posts by time they were posted
 function sortByDate ($a, $b) {
 
-    return strtotime ($a['posttime']) < strtotime ($b ['posttime']);
+  return strtotime ($a['posttime']) < strtotime ($b ['posttime']);
 }
 
 // Sorts post by their accumulated sum/score
