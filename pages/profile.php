@@ -7,13 +7,15 @@ require __DIR__.'../../views/header.php';
 <?php $posts = postInfo($pdo)?>
 <?php $likeSum = getOwnLikeSum($pdo)?>
 
+<?php usort($posts, 'sortByScore'); ?>
+
 <div class="row d-flex profile">
 
-  <div class="col-md-6 d-flex flex-column align-items-between">
+  <div class="col-md-6 d-flex flex-column align-items-center">
 
     <?php foreach ($infos as $info): ?>
 
-      <div class="d-flex flex-row justify-content-around align-items-center">
+      <div class="">
 
         <!-- If no image exists, use default image -->
         <img class="profilePic" src="
@@ -22,29 +24,28 @@ require __DIR__.'../../views/header.php';
         <?php else: echo "../images/noimage.png";?>
         <?php endif; ?>" alt="">
 
-        <div class="">
-          <div class="star d-flex flex-row align-items-center justify-content-around">
-            <img src="/../images/star.png" alt="">
-            <h5 class="likes mt-4 ml-3"><?php echo $likeSum['sum']; ?></h5>
-          </div>
-
-        </div>
 
       </div>
 
-      <div class="card-body card border-primary col-md-8 text-center">
-        <h1 class="card-title"><?php echo $info['name'];?></h1>
-        <h5 class="card-subtitle"><?php echo $info['username'];?></h5>
+      <div class="border-primary col-md-8 text-center">
+        <h1 class=""><?php echo $info['name'];?></h1>
+        <h5 class=""><?php echo $info['username'];?></h5>
+        <div class="">
+          <div class="star d-flex flex-row align-items-center justify-content-center">
+            <img src="/../images/star.png" alt="">
+            <h5 class="likes mt-4 ml-3"><?php echo $likeSum['sum']; ?></h5>
+          </div>
+        </div>
         <br>
-        <p class="card-text text-left card bio"><?php echo $info['biography'];?></p>
-        <i class="card-text text-left">Email: <?php echo $info['email'];?></i>
+        <p class=""><?php echo $info['biography'];?></p>
+        <i class="">Email: <?php echo $info['email'];?></i>
+        <br>
+        <br>
+        <a href="editProfileForm.php"><button type="button" name="button" class="sortButton btn btn-info btn-sm">Edit Profile</button></a>
       </div>
 
     <?php endforeach; ?>
 
-    <br>
-
-    <a href="editProfileForm.php"><button type="button" name="button" class="btn btn-outline-primary btn-sm">Edit Profile</button></a>
 
   </div>
 
@@ -82,7 +83,7 @@ require __DIR__.'../../views/header.php';
 
               <div class="card-footer d-flex justify-content-between align-items-end">
                 <?php if (isset($_SESSION['user']) && $post['username'] === $_SESSION['user']['username']): ?>
-                  <a href="/app/auth/userCheck.php?id=<?php echo $post['post_id'] ?>&page=editPostForm">Edit Post</a>
+                  <a href="/app/auth/userCheck.php?id=<?php echo $post['post_id'] ?>&page=/../../pages/editPostForm">Edit Post</a>
                   <a href="/app/auth/userCheck.php?id=<?php echo $post['post_id'] ?>&page=deletePost">Delete Post</a>
                 <?php endif; ?>
               </div> <!-- End Footer -->

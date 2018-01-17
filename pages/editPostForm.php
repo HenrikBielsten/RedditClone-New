@@ -17,6 +17,11 @@ $post = $statement->fetch(PDO::FETCH_ASSOC);
 
 <?php if (isset($_SESSION['user'])): ?>
 
+  <div class="row">
+    <div class="col-md-12 d-flex justify-content-center mt-5">
+
+<article class="">
+
   <h2>Edit Post</h2>
 
   <form action="../app/auth/editPost.php?id=<?php echo $post_id?>" method="post">
@@ -43,7 +48,11 @@ $post = $statement->fetch(PDO::FETCH_ASSOC);
 
   </form>
 
+</article>
+
 </div>
+</div>
+
 
 <?php endif; ?>
 

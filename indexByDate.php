@@ -3,17 +3,18 @@ declare(strict_types=1);
 require __DIR__.'/views/header.php';
 ?>
 
-<article class="ml-5 mb-4">
+<article class="mb-4 d-flex flex-column align-items-center">
 
-  <article>
-    <h1><?php echo $config['title']; ?></h1>
-    <p>This is the home page.</p>
+  <article class="d-flex flex-column align-items-center">
+    <h1 class="headerTitle"><?php echo $config['title']; ?></h1>
+    <p>Welcome to this RedditClone!</p>
   </article>
 
   <!-- Buttons to switch between displaying posts by score or by date posted -->
-  <div class="col-md-4 d-flex flex-collumn justify-content-between">
-    <a href="indexByDate.php"><button class="sortDate btn btn-info btn-sm" type="button" name="byDate">Sort By Post Date</button></a>
-    <a href="index.php"><button class="sortScore btn btn-info btn-sm" type="button" name="byScore">Sort By Score</button></a>
+  <div class="col-md-4 d-flex flex-collumn justify-content-around mt-5">
+    <a href="indexByDate.php"><button class="sortButton sortDate btn btn-info" type="button" name="byDate">Sort By Post Date</button></a>
+    <a href="index.php"><button class="sortButton sortScore btn btn-info" type="button" name="byScore">Sort By Score</button></a>
+
   </div>
 
 </article>
@@ -24,13 +25,15 @@ require __DIR__.'/views/header.php';
 <!-- Calls sorting function sorting posts by highest score -->
 <?php usort($posts, 'sortByDate'); ?>
 
+<div class="column col-md-12 d-flex flex-column align-items-center mt-5">
+
 <?php foreach ($posts as $post): ?>
 
-  <div class="row ml-5">
+  <div class="row">
 
-    <article class="col-md-6 d-flex flex-row">
+    <article class="col-md-12 d-flex flex-row">
 
-      <div class="card text-white bg-dark w-75">
+      <div class="card text-white bg-dark">
         <h3 class="card-header"><?php echo $post['title']; ?></h3>
         <div class="card-body d-flex flex-column">
           <!-- Description is the linked URL -->
@@ -38,7 +41,7 @@ require __DIR__.'/views/header.php';
 
           <!-- Profile pic. If user has no profile pic: use default -->
           <img class="postPic" src="
-          <?php if(isset($post['img'])): ?>
+          <?php if (isset($post['img'])): ?>
             <?php echo "../images/".$post['img']; ?>
           <?php else: echo "../images/noimage.png";?>
           <?php endif; ?>" alt="">
@@ -67,14 +70,14 @@ require __DIR__.'/views/header.php';
         </div> <!-- End card -->
 
         <!-- Vote section -->
-        <div class="voteSection d-flex flex-column justify-content-center pl-3 mb-3">
+        <div class="voteSection d-flex flex-column justify-content-center pl-3 pr-3 mb-3">
 
           <!-- If post is not created by current user: displays up vote button -->
           <?php if (isset($_SESSION['user']) && $post['username'] !== $_SESSION['user']['username']): ?>
             <button class=" upVote btn btn-success btn-sm" type="button" name="up" data-user_id="<?php echo $_SESSION['user']['id']; ?>" data-post_id="<?php echo $post['post_id']; ?>" data-vote_dir="1">Vote Up</button>
           <?php endif; ?>
 
-          <p class="votes m-0" data-post_id_div="<?php echo $post['post_id']; ?>">Votes: <?php echo $post['sum']; ?></p> <!-- Shows sum of votes -->
+          <p class="votes m-0">Votes: <?php echo $post['sum']; ?></p> <!-- Shows sum of votes -->
 
           <!-- If post is not created by current user: displays down vote button -->
           <?php if (isset($_SESSION['user']) && $post['username'] !== $_SESSION['user']['username']): ?>
@@ -87,5 +90,7 @@ require __DIR__.'/views/header.php';
     </div> <!-- End Row -->
 
   <?php endforeach; ?>
+
+</div>
 
   <?php require __DIR__.'/views/footer.php'; ?>

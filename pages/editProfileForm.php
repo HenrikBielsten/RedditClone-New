@@ -3,9 +3,12 @@ declare(strict_types=1);
 require __DIR__.'../../views/header.php';
 ?>
 
-<h1>Edit Profile</h1>
+<div class="row">
+  <div class="col-md-12 d-flex justify-content-center mt-5">
 
 <article>
+
+<h1>Edit Profile</h1>
 
   <?php $infos = userInfo($pdo)?>
 
@@ -75,10 +78,14 @@ require __DIR__.'../../views/header.php';
 
   <br>
 
-  <a href="profile.php"><button type="button" class="btn btn-outline-danger btn-sm">Cancel</button></a>
+  <a href="profile.php"><button type="button" class="btn btn-outline-danger btn-sm mb-5">Cancel</button></a>
+
+</form>
 
 </article>
 
-</form>
+</div>
+
+</div>
 
 <?php require __DIR__.'../../views/footer.php'; ?>

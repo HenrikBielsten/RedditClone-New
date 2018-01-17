@@ -1,4 +1,41 @@
 /* In this file you can add your custom styles. */
+/* .column {
+  border: 2px solid white;
+}
+.row {
+  border: 2px solid white;
+} */
+
+@font-face {
+  font-family: arapey;
+  src: url('/../../fonts/arapey-regular.ttf');
+}
+
+* {
+  color: #F8F9FA;
+  font-family: 'arapey';
+}
+
+body {
+  background-color: #222222;
+}
+
+a {
+  color: #3B8293;
+}
+
+.navTitle {
+  color: #561F9F;
+}
+
+.voteSection {
+  border-right: 2px solid #72787F;
+}
+
+.card {
+  width: 35vw;
+}
+
 .profilePic {
   box-shadow: 3px 3px 10px black;
   height: 200px;
@@ -33,7 +70,6 @@
   margin-left: 3vw;
   margin-top: 3vh;
   margin-right: 3vw;
-  background-color: #795697;
   padding: 2vh 0 2vh 0;
 }
 
@@ -48,4 +84,13 @@
 
 .unlike {
   visibility: hidden;
+}
+
+.sortButton {
+  background-color: #561F9F;
+  border-color: #561F9F;
+}
+
+button:hover {
+  cursor: pointer;
 }

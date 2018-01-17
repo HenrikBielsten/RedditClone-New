@@ -6,6 +6,9 @@ require __DIR__.'../../views/header.php';
 
 ?>
 
+<div class="row">
+  <div class="col-md-12 d-flex justify-content-center mt-5">
+
 <article>
   <h1>Login</h1>
 
@@ -23,12 +26,15 @@ require __DIR__.'../../views/header.php';
     </div><!-- /form-group -->
 
     <button type="submit" class="btn btn-sm btn-outline-primary">Login</button>
-  
+
   </form>
 
   <br>
 
   <a href="createForm.php"><button type="button" class="btn btn-sm btn-outline-success">Create New Account</button></a>
 </article>
+
+</div>
+</div>
 
 <?php require __DIR__.'../../views/footer.php'; ?>

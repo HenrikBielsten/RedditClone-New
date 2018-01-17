@@ -6,9 +6,10 @@ require __DIR__.'../../views/header.php';
 <?php $infos = otherUserInfo($pdo)?>
 <?php $posts = otherUserPosts($pdo)?>
 <?php $likeSum = getLikeSum($pdo)?>
+
 <?php
 
-if (isset($_SESSION['user']['user_id'])) {
+if (isset($_SESSION['user']['id'])) {
   $likeDir = getLikeDirection($pdo);
 }
 
@@ -18,11 +19,11 @@ if (isset($_SESSION['user']['user_id'])) {
 
 <div class="row d-flex profile">
 
-  <div class="col-md-6 d-flex flex-column align-items-between">
+  <div class="col-md-6 d-flex flex-column align-items-center">
 
     <?php foreach ($infos as $info): ?>
 
-      <div class="d-flex flex-row justify-content-around align-items-center">
+      <div class="">
 
         <!-- If no image exists, use default image -->
         <img class="profilePic" src="
@@ -31,13 +32,22 @@ if (isset($_SESSION['user']['user_id'])) {
         <?php else: echo "../images/noimage.png";?>
         <?php endif; ?>" alt="">
 
+      </div>
+
+      <div class="border-primary col-md-8 text-center">
+        <h1 class=""><?php echo $info['name'];?></h1>
+        <h5 class=""><?php echo $info['username'];?></h5>
+
+        <!-- Displays likes and buttons to like/unlike -->
         <div class="">
-          <div class="star d-flex flex-row align-items-center justify-content-around">
+          <div class="star d-flex flex-row align-items-center justify-content-center">
             <img src="/../images/star.png" alt="">
             <h5 class="likes mt-4 ml-3"><?php echo $likeSum['sum']; ?></h5>
           </div>
 
-          <?php if (isset($_SESSION['user']['user_id'])) : ?>
+          <!-- If the user is logged in: create like buttons -->
+          <?php if (isset($_SESSION['user']['id'])) : ?>
+
             <button class="like btn btn-success btn-sm" type="button" name="like" data-like_dir="1" data-other_user="<?php echo $info['id']; ?>">Like</button>
 
             <button class="unlike btn btn-success btn-sm" type="button" name="like" data-like_dir="0" data-other_user="<?php echo $info['id']; ?>">Unlike</button>
@@ -65,15 +75,9 @@ if (isset($_SESSION['user']['user_id'])) {
           <?php endif; ?>
 
         </div>
-
-      </div>
-
-      <div class="card-body card border-primary col-md-8 text-center">
-        <h1 class="card-title"><?php echo $info['name'];?></h1>
-        <h5 class="card-subtitle"><?php echo $info['username'];?></h5>
         <br>
-        <p class="card-text text-left card bio"><?php echo $info['biography'];?></p>
-        <i class="card-text text-left">Email: <?php echo $info['email'];?></i>
+        <p class=""><?php echo $info['biography'];?></p>
+        <i class="">Email: <?php echo $info['email'];?></i>
       </div>
 
     <?php endforeach; ?>
