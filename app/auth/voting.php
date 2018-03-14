@@ -1,68 +1,73 @@
 <?php
+
+/*
+ * This file is part of Yrgo.
+ * (c) Yrgo, högre yrkesutbildning.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 require __DIR__.'/../autoload.php';
 
 // If user votes up we fetch data to be used in later checks
 if (isset($_POST['post_id'])) {
-  $user_id = $_SESSION['user']['id'];
-  $post_id = (int)$_POST['post_id'];
-  $vote_dir = (int)$_POST['vote_dir'];
+    $user_id = $_SESSION['user']['id'];
+    $post_id = (int)$_POST['post_id'];
+    $vote_dir = (int)$_POST['vote_dir'];
 
-  $hasVotedQuery = 'SELECT user_id, vote_dir, post_id FROM votes WHERE user_id=:user_id AND post_id=:post_id';
+    $hasVotedQuery = 'SELECT user_id, vote_dir, post_id FROM votes WHERE user_id=:user_id AND post_id=:post_id';
 
-  $hasVotedStatement = $pdo->prepare($hasVotedQuery);
+    $hasVotedStatement = $pdo->prepare($hasVotedQuery);
 
-  $hasVotedStatement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-  $hasVotedStatement->bindParam(':post_id', $post_id, PDO::PARAM_INT);
-  $hasVotedStatement->execute();
+    $hasVotedStatement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+    $hasVotedStatement->bindParam(':post_id', $post_id, PDO::PARAM_INT);
+    $hasVotedStatement->execute();
 
-  $voted = $hasVotedStatement->fetch(PDO::FETCH_ASSOC);
+    $voted = $hasVotedStatement->fetch(PDO::FETCH_ASSOC);
 
-  // If user has not voted previously: insert new vote
-  if (!$voted) {
+    // If user has not voted previously: insert new vote
+    if (!$voted) {
+        $query = 'INSERT INTO votes (user_id, post_id, vote_dir) VALUES (:user_id, :post_id, :vote_dir)';
 
-    $query = 'INSERT INTO votes (user_id, post_id, vote_dir) VALUES (:user_id, :post_id, :vote_dir)';
+        $statement = $pdo->prepare($query);
 
-    $statement = $pdo->prepare($query);
+        $statement->bindParam(':post_id', $post_id, PDO::PARAM_INT);
+        $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        $statement->bindParam(':vote_dir', $vote_dir, PDO::PARAM_INT);
+        $statement->execute();
 
-    $statement->bindParam(':post_id', $post_id, PDO::PARAM_INT);
-    $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-    $statement->bindParam(':vote_dir', $vote_dir, PDO::PARAM_INT);
-    $statement->execute();
+        header("content-type: application/json");
+        echo json_encode($user_id);
+    }
 
-    header("content-type: application/json");
-    echo json_encode($user_id);
-  }
+    // If user has voted previously: update vote
+    elseif (isset($voted['vote_dir']) && (int)$voted['vote_dir'] !== $vote_dir) {
+        $query = 'UPDATE votes SET vote_dir = :vote_dir WHERE user_id = :user_id AND post_id = :post_id';
 
-  // If user has voted previously: update vote
-  elseif (isset($voted['vote_dir']) && (int)$voted['vote_dir'] !== $vote_dir) {
+        $statement = $pdo->prepare($query);
 
-    $query = 'UPDATE votes SET vote_dir = :vote_dir WHERE user_id = :user_id AND post_id = :post_id';
+        $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        $statement->bindParam(':vote_dir', $vote_dir, PDO::PARAM_INT);
+        $statement->bindParam(':post_id', $post_id, PDO::PARAM_INT);
+        $statement->execute();
 
-    $statement = $pdo->prepare($query);
+        header("content-type: application/json");
+        echo json_encode($user_id);
+    }
 
-    $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-    $statement->bindParam(':vote_dir', $vote_dir, PDO::PARAM_INT);
-    $statement->bindParam(':post_id', $post_id, PDO::PARAM_INT);
-    $statement->execute();
+    // If user has voted same direction as now clicked: set vote to 0, i.e not counted
+    if ((int)$voted['vote_dir'] === $vote_dir) {
+        $query = 'UPDATE votes SET vote_dir = 0 WHERE user_id = :user_id AND post_id = :post_id';
 
-    header("content-type: application/json");
-    echo json_encode($user_id);
-  }
+        $statement = $pdo->prepare($query);
 
-  // If user has voted same direction as now clicked: set vote to 0, i.e not counted
-  if ((int)$voted['vote_dir'] === $vote_dir) {
+        $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        $statement->bindParam(':post_id', $post_id, PDO::PARAM_INT);
+        $statement->execute();
 
-    $query = 'UPDATE votes SET vote_dir = 0 WHERE user_id = :user_id AND post_id = :post_id';
-
-    $statement = $pdo->prepare($query);
-
-    $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-    $statement->bindParam(':post_id', $post_id, PDO::PARAM_INT);
-    $statement->execute();
-
-    header("content-type: application/json");
-    echo json_encode($user_id);
-  }
+        header("content-type: application/json");
+        echo json_encode($user_id);
+    }
 }

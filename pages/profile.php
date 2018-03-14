@@ -19,7 +19,7 @@ require __DIR__.'../../views/header.php';
 
         <!-- If no image exists, use default image -->
         <img class="profilePic" src="
-        <?php if(isset($info['img'])): ?>
+        <?php if (isset($info['img'])): ?>
           <?php echo "../images/".$info['img']; ?>
         <?php else: echo "../images/noimage.png";?>
         <?php endif; ?>" alt="">
@@ -69,7 +69,7 @@ require __DIR__.'../../views/header.php';
 
                 <!-- Profile pic. If user has no profile pic: use default -->
                 <img class="postPic" src="
-                <?php if(isset($post['img'])): ?>
+                <?php if (isset($post['img'])): ?>
                   <?php echo "../images/".$post['img']; ?>
                 <?php else: echo "../images/noimage.png";?>
                 <?php endif; ?>" alt="">

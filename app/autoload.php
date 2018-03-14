@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of Yrgo.
+ * (c) Yrgo, högre yrkesutbildning.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 // Start the session engines.
@@ -23,5 +30,5 @@ $pdo = new PDO($config['database_path']);
 
 // If user is already logged in she should not be able to reach the Login-Page
 if (stripos($_SERVER['REQUEST_URI'], 'loginForm.php') && isset($_SESSION['user'])) {
-  redirect('/');
+    redirect('/');
 };
