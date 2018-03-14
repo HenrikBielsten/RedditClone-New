@@ -1,5 +1,7 @@
 # RedditClone-New
 
+[![StyleCI](https://styleci.io/repos/116417516/shield?branch=master)](https://styleci.io/repos/116417516)
+
 Cyberlink Assignment
 
 This was made for an assignment as part of a programming course at YRGO Gothenburg
